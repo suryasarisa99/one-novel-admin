@@ -57,6 +57,7 @@ input {
 .user-details-page {
   color: var(--text-color);
   background-color: var(--primary-color);
+  padding: 14px;
   .bio {
     margin-top: 20px;
     .field {
@@ -82,7 +83,7 @@ input {
     grid-template-columns: 1fr 1fr 1fr;
     padding: 18px 12px;
     border-radius: 6px;
-    row-gap: 8px;
+    row-gap: 16px;
     margin-top: 15px;
     margin-inline: 12px;
     background-color: var(--background-color);
@@ -94,6 +95,9 @@ input {
       .label {
         order: 2;
         font-size: 12px;
+      }
+      .value {
+        font-weight: 600;
       }
     }
   }

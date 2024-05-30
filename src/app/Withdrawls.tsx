@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import useData from "../hooks/useData";
 import axios from "axios";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import { useNavigate, useNavigation } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 export default function WithdrawlsPage() {
   const { manualPayments, setManualPayments, withDrawls, token } = useData();
@@ -10,6 +11,8 @@ export default function WithdrawlsPage() {
   console.log(manualPayments, token);
   //   const navigator = useNavigation();
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [sortOn, setSortOn] = useState("name");
 
   useEffect(() => {
     console.log("token is added, ", token);
@@ -32,39 +35,65 @@ export default function WithdrawlsPage() {
     <div className="transactions-page page">
       <h1>Withdrawls</h1>
       <div className="transactions">
-        {withDrawls.map((payment) => {
-          return (
-            <div
-              key={payment._id}
-              className="withdrawl-item"
-              onClick={() => {
-                // n("/");
-                navigate(
-                  "/qrcode?userId=" +
-                    payment.userId +
-                    "&amount=" +
-                    payment.amount +
-                    "&userName=" +
-                    payment.userName +
-                    "&date=" +
-                    payment.date +
-                    "&status=" +
-                    payment.status +
-                    "&withdrawlId=" +
-                    payment._id +
-                    "&type=" +
-                    payment.type
-                );
-              }}
-            >
-              <p>{payment.userName}</p>
-              <div className="right">
-                <p>{payment.amount}</p>
-                <FaChevronRight size={22} />
+        <SearchBar
+          value={search}
+          onChange={(value) => setSearch(value)}
+          onClear={() => setSearch("")}
+          options={["Amount Desc", "Amount Asc", "name", "userId", "number"]}
+          sortOn={sortOn}
+          setSortOn={setSortOn}
+        />
+        {withDrawls
+          .filter((p) => {
+            if (sortOn == "name") {
+              return p.userName.toLowerCase().includes(search.toLowerCase());
+            } else if (sortOn == "userId") {
+              return p.userId.includes(search);
+            } else return true;
+          })
+          .map((payment) => {
+            return (
+              <div
+                key={payment._id}
+                className="withdrawl-item"
+                onClick={() => {
+                  // n("/");
+                  navigate(
+                    "/qrcode?userId=" +
+                      payment.userId +
+                      "&amount=" +
+                      payment.amount +
+                      "&userName=" +
+                      payment.userName +
+                      "&date=" +
+                      payment.date +
+                      "&status=" +
+                      payment.status +
+                      "&withdrawlId=" +
+                      payment._id +
+                      "&type=" +
+                      payment.type
+                  );
+                }}
+              >
+                <p>{payment.userName}</p>
+                <div className="right">
+                  <p>{payment.amount}</p>
+                  <FaChevronDown
+                    size={22}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (openPayment === payment._id) {
+                        setOpenPayment(null);
+                      } else {
+                        setOpenPayment(payment._id);
+                      }
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

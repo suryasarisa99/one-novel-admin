@@ -13,9 +13,8 @@ export default function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserDetails />} />
-        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/" element={<AdminLogin />} />
         <Route path="/qrcode" element={<QrCodePage />} />
         <Route path="/payments" element={<Payments />} />
         <Route path="/withdrawls" element={<WithdrawlsPage />} />

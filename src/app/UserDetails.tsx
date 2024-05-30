@@ -21,10 +21,10 @@ export default function UserDetails() {
             <div className="label">Pass </div>
             <div className="value"> ******** </div>
           </div>
-          <div className="field">
+          {/* <div className="field">
             <p className="label">Level </p>
             <p className="value">Member</p>
-          </div>
+          </div> */}
           <div className="field">
             <p className="label">Email </p>
             <p className="value"> @gmail.com </p>

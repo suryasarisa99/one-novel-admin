@@ -8,6 +8,8 @@ type DataContextTypes = {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
   withDrawls: WithDrawlsType[];
+  logedIn: boolean;
+  setLogedIn: React.Dispatch<React.SetStateAction<boolean>>;
   setWithDrawls: React.Dispatch<React.SetStateAction<WithDrawlsType[]>>;
 };
 
@@ -32,6 +34,8 @@ export type ManualPaymentType = {
   userId: string;
   date: string;
   status: string;
+  userName: string;
+  number: string;
 };
 
 export default DataContextTypes;

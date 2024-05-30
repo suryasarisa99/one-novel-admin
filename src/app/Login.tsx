@@ -7,7 +7,14 @@ export default function AdminLogin() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { token, setToken, manualPayments, setManualPayments } = useData();
+  const {
+    token,
+    setToken,
+    manualPayments,
+    setManualPayments,
+    logedIn,
+    setLogedIn,
+  } = useData();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,11 +27,23 @@ export default function AdminLogin() {
           setToken(res.data.token);
           setManualPayments(res.data.payments);
           navigate("/payments");
+          setLogedIn(true);
         }
       })
-      .catch((err) => {})
+      .catch((err) => {
+        setLogedIn(false);
+      })
       .finally(() => {});
   }
+
+  if (token && !logedIn) {
+    return <div className="loading page">Logging in...</div>;
+  }
+
+  if (logedIn) {
+    navigate("/payments");
+  }
+
   return (
     <div className="login-page page">
       <form action="" onSubmit={handleSubmit}>
