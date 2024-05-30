@@ -1,0 +1,197 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #f5f4f0;
+  --primary-dark: #e8b58a;
+  --on-primary: #1c1c1c;
+  --background-color: #ffffff;
+  --on-bg-title: #565146;
+  --text-color: #000000;
+  --btn: #000;
+  --on-btn: #fff;
+  --error: #ffebeb;
+  --on-error: #8b0000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #1c1c1c;
+    --primary-color: #232220;
+    --primary-dark: #e8b58a;
+    --on-primary-dark: #1c1c1c;
+    --on-primary: #f5f4f0;
+    --background-color: #323b44;
+    --background-color: #3e3a33;
+    --on-bg-title: #565146;
+    --text-color: #ffffff;
+    --btn: #857248;
+    --on-btn: #dddddd;
+    --input-border: #4b4b4bcc;
+    --error: #440a0a; // Dark red
+    --on-error: #ffcccc; // Light red
+  }
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+body {
+  font-family: "Poppins";
+}
+button {
+  background-color: var(--btn);
+  color: var(--on-btn);
+  padding: 6px 16px;
+}
+
+input {
+  padding: 10px 14px;
+}
+.user-details-page {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  .bio {
+    margin-top: 20px;
+    .field {
+      display: flex;
+      padding: 4px 14px;
+      gap: 8px;
+
+      .label {
+        min-width: 80px;
+        position: relative;
+
+        &::after {
+          content: ":";
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 18px 12px;
+    border-radius: 6px;
+    row-gap: 8px;
+    margin-top: 15px;
+    margin-inline: 12px;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    .field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .label {
+        order: 2;
+        font-size: 12px;
+      }
+    }
+  }
+  .sections {
+    display: flex;
+    padding: 6px 14px;
+    justify-content: space-between;
+  }
+}
+
+// login
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    width: 90%;
+    max-width: 400px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      margin-top: 30px;
+    }
+  }
+}
+
+.qrcode-page {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+  padding-top: 40px;
+  height: 100vh;
+
+  h3 {
+    font-size: 22px;
+  }
+
+  .qrcode {
+    width: 80%;
+    aspect-ratio: 1/1;
+    max-width: 350px;
+    border-radius: 8px;
+  }
+  .btns {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 25px;
+    gap: 20px;
+  }
+}
+
+.transactions-page {
+  h1 {
+    font-size: 28px;
+    margin-top: 14px;
+    text-align: center;
+  }
+  .transactions {
+    padding: 14px 16px;
+
+    .transaction {
+      padding: 10px 16px;
+      background-color: var(--background-color);
+      border-radius: 8px;
+      margin-bottom: 4px;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20px;
+      }
+      .btns {
+        display: flex;
+        gap: 25px;
+        padding-top: 14px;
+        justify-content: right;
+        padding-right: 10px;
+        padding-bottom: 14px;
+      }
+    }
+  }
+}
+
+.withdrawl-item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  margin-bottom: 4px;
+
+  .right {
+    display: flex;
+    gap: 25px;
+  }
+}

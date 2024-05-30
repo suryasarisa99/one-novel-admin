@@ -1,0 +1,26 @@
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./app/Home";
+import NavBar from "./components/NavBar";
+import UserDetails from "./app/UserDetails";
+import AdminLogin from "./app/Login";
+import QrCodePage from "./app/QrCodePage";
+import Payments from "./app/Payments";
+import WithdrawlsPage from "./app/Withdrawls";
+
+export default function App() {
+  return (
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user" element={<UserDetails />} />
+        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/qrcode" element={<QrCodePage />} />
+        <Route path="/payments" element={<Payments />} />
+        <Route path="/withdrawls" element={<WithdrawlsPage />} />
+      </Routes>
+      {location.pathname !== "/login" && <NavBar />}
+    </div>
+  );
+}
