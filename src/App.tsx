@@ -9,6 +9,7 @@ import QrCodePage from "./app/QrCodePage";
 import Payments from "./app/Payments";
 import WithdrawlsPage from "./app/Withdrawls";
 import AddTransactions from "./app/AddTransactions";
+import Transactions from "./app/Transactions.tsx/Transactions";
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/qrcode" element={<QrCodePage />} />
         <Route path="/payments" element={<Payments />} />
         <Route path="/withdrawls" element={<WithdrawlsPage />} />
-        <Route path="/add-transactions" element={<AddTransactions />} />
+        <Route path="/transactions" element={<Transactions />} />
       </Routes>
       {location.pathname !== "/" && <NavBar />}
     </div>

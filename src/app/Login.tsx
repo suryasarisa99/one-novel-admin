@@ -32,6 +32,7 @@ export default function AdminLogin() {
       })
       .catch((err) => {
         setLogedIn(false);
+        setToken("");
       })
       .finally(() => {});
   }

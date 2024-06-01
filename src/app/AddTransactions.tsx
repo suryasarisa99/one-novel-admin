@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import "./add-transactions.scss";
+import useData from "../hooks/useData";
 type TransactionType = {
   transaction_id: string;
   status: string;
@@ -15,40 +15,21 @@ export default function AddTransactions() {
   const [amount, setAmount] = useState(1000);
   const [status, setStatus] = useState("accepted");
   const [date, setDate] = useState(new Date());
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className="add-transactions page">
-      <div className="add-transaction-item">
-        <span>Type</span>
-        <div className="switch">
-          <span className="switch-item" onClick={() => setType("Withdrawl")}>
-            Withdrawl
-          </span>
-          <span
-            onClick={() => setType("Referal Bonus")}
-            className="switch-item"
-          >
-            Referal Bonu
-          </span>
-        </div>
-      </div>
-
-      <div className="add-transaction-item">
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.valueAsNumber)}
-        />
-      </div>
-      <div className="add-transaction-item">
-        <input
-          type="date"
-          value={date.toISOString()}
-          onChange={(e) => {
-            if (e.target.valueAsDate) setDate(e.target.valueAsDate);
-          }}
-        />
-      </div>
+      {transactions.map((t) => {
+        return (
+          <div className="transaction-item">
+            <div className="transaction-id">{t.transaction_id}</div>
+            <div className="status">{t.status}</div>
+            <div className="transaction-type">{t.transaction_type}</div>
+            <div className="amount">{t.amount}</div>
+            <div className="date">{t.date}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }

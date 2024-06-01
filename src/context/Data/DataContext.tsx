@@ -32,27 +32,27 @@ export default function DataProvider({
       console.log(local_token);
       setToken(local_token);
 
-      // axios
-      //   .get(import.meta.env.VITE_SERVER, {
-      //     headers: {
-      //       Authorization: `Bearer ${local_token}`,
-      //     },
-      //   })
-      //   .then((res) => {
-      //     if (res.data) {
-      //       console.log(res.data);
-      //       setManualPayments(res.data.payments);
-      //       setWithDrawls(res.data.withdrawls);
-      //       setLogedIn(true);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     if (err.response.data.error == "Unauthorized") {
-      //       localStorage.removeItem("token");
-      //       setToken("");
-      //       setLogedIn(false);
-      //     }
-      //   });
+      axios
+        .get(import.meta.env.VITE_SERVER, {
+          headers: {
+            Authorization: `Bearer ${local_token}`,
+          },
+        })
+        .then((res) => {
+          if (res.data) {
+            console.log(res.data);
+            setManualPayments(res.data.payments);
+            setWithDrawls(res.data.withdrawls);
+            setLogedIn(true);
+          }
+        })
+        .catch((err) => {
+          if (err.response.data.error == "Unauthorized") {
+            localStorage.removeItem("token");
+            setToken("");
+            setLogedIn(false);
+          }
+        });
     }
   }, []);
 

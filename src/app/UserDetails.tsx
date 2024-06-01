@@ -1,46 +1,49 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, FormEvent } from "react";
 import useData from "../hooks/useData";
+import { FaChevronRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
-  const [type, setType] = useState("");
-  const [value, setValue] = useState("");
+  const [type, setType] = useState("number");
+  const [value, setValue] = useState("1112223330");
   const { user, setUser } = useData();
+
+  const navigate = useNavigate();
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    axios
+      .get(`${import.meta.env.VITE_SERVER}/user/${type}/${value}`)
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data);
+        setUser(res.data);
+      });
+  };
 
   return (
     <div className="user-details-page page">
       <div className="left">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => {
-            if (/^[0-9]+$/.test(e.target.value)) {
-              setType("number");
-            } else if (e.target.value.includes("@")) {
-              setType("email");
-            } else if (/^[\w\W]+$/.test(e.target.value)) {
-              setType("_id");
-            } else {
-              setType("");
-            }
-            setValue(e.target.value);
-          }}
-          placeholder="Search by Id or Phone"
-        />
-        <button
-          onClick={() => {
-            axios
-              .get(`${import.meta.env.VITE_SERVER}/user/${type}/${value}`)
-              .then((res) => {
-                console.log(res.data);
-                console.log(res.data);
-                setUser(res.data);
-              });
-          }}
-        >
-          submit
-        </button>
-        <p>{type}</p>
+        <form action="">
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => {
+              if (/^[0-9]+$/.test(e.target.value)) {
+                setType("number");
+              } else if (e.target.value.includes("@")) {
+                setType("email");
+              } else if (/^[\w\W]+$/.test(e.target.value)) {
+                setType("_id");
+              } else {
+                setType("");
+              }
+              setValue(e.target.value);
+            }}
+            placeholder="Id / Phone / Email"
+          />
+          <button onClick={onSubmit}>submit</button>
+        </form>
         {user && (
           <div>
             <div className="bio">
@@ -100,9 +103,29 @@ export default function UserDetails() {
               </div>
             </div>
             <div className="sections">
-              <div className="title">Parents</div>
-              <div className="title">Referals</div>
-              <div className="title">Transactions</div>
+              <div className="section">
+                <div className="title">Parents</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
+              <div className="section">
+                <div className="title">Referals</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
+              <div
+                className="section"
+                onClick={() => {
+                  navigate("/transactions");
+                }}
+              >
+                <div className="title">Transactions</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
             </div>
           </div>
         )}

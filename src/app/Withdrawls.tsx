@@ -39,16 +39,18 @@ export default function WithdrawlsPage() {
           value={search}
           onChange={(value) => setSearch(value)}
           onClear={() => setSearch("")}
-          options={["Amount Desc", "Amount Asc", "name", "userId", "number"]}
+          // options={["Amount Desc", "Amount Asc", "name", "userId", "number"]}
+          options={["name", "userId"]}
           sortOn={sortOn}
           setSortOn={setSortOn}
         />
         {withDrawls
           .filter((p) => {
+            const searchStr = search.toLowerCase();
             if (sortOn == "name") {
-              return p.userName.toLowerCase().includes(search.toLowerCase());
+              return p.userName.toLowerCase().includes(searchStr);
             } else if (sortOn == "userId") {
-              return p.userId.includes(search);
+              return p.userId.toLowerCase().includes(searchStr);
             } else return true;
           })
           .map((payment) => {

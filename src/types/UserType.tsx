@@ -17,10 +17,8 @@ export type UserType = {
   password: string;
   transactions: {
     _id: string;
-    transaction_id: string;
     status: string;
     transaction_type: string;
-    fromUser: string;
     amount: number;
     date: string;
     is_debit: boolean;

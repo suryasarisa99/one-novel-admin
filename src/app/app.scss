@@ -50,6 +50,16 @@ button {
   color: var(--on-btn);
   padding: 6px 16px;
 }
+#overlay,
+.overlay {
+  background-color: rgba(117, 117, 117, 0.216);
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -80px;
+  backdrop-filter: blur(6px);
+}
 
 input {
   padding: 10px 14px;
@@ -58,6 +68,13 @@ input {
   color: var(--text-color);
   background-color: var(--primary-color);
   padding: 14px;
+
+  form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+  }
   .bio {
     margin-top: 20px;
     .field {
@@ -85,6 +102,7 @@ input {
     border-radius: 6px;
     row-gap: 16px;
     margin-top: 15px;
+    margin-bottom: 15px;
     margin-inline: 12px;
     background-color: var(--background-color);
     border-radius: 12px;
@@ -102,9 +120,15 @@ input {
     }
   }
   .sections {
-    display: flex;
     padding: 6px 14px;
     justify-content: space-between;
+    border-radius: 16px;
+    background-color: var(--background-color);
+    .section {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 16px;
+    }
   }
 }
 
