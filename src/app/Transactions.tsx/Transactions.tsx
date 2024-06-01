@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TransactionPopup from "./TransactionPopup";
 import "../add-transactions.scss";
 import TransactionItem from "./TransactionItem";
 import { FaPlus, FaSave } from "react-icons/fa";
 import useData from "../../hooks/useData";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export type TransactionType = {
   _id: string;
@@ -17,7 +19,7 @@ export type TransactionType = {
 export default function Transactions() {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [popup, setPopup] = useState(false);
-  const { user, setUser } = useData();
+  const { user, setUser, token } = useData();
   const [popupDetails, setPopupDetails] = useState<
     TransactionType | undefined
   >();
@@ -26,6 +28,12 @@ export default function Transactions() {
   });
 
   const [editMode, setEditMode] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) navigate("/user");
+  }, []);
+
   return (
     <div
       className="add-transactions page"
@@ -38,7 +46,27 @@ export default function Transactions() {
 
         <div className="btns">
           {transactions.length > 0 && (
-            <button onClick={() => setPopup(!popup)}>
+            <button
+              onClick={() => {
+                axios
+                  .post(
+                    `${import.meta.env.VITE_SERVER}/edit/transactions/${
+                      user?._id
+                    }`,
+                    {
+                      transactions,
+                    },
+                    {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    }
+                  )
+                  .then((res) => {
+                    console.log(res.data);
+                  });
+              }}
+            >
               <FaSave />
             </button>
           )}
@@ -68,6 +96,27 @@ export default function Transactions() {
                 const newTransactions = [...user.transactions];
                 newTransactions[i] = x;
                 setUser({ ...user, transactions: newTransactions });
+                axios
+                  .put(
+                    `${import.meta.env.VITE_SERVER}/edit/transaction/${
+                      user._id
+                    }`,
+                    {
+                      status: x.status,
+                      type: x.transaction_type,
+                      is_debit: x.is_debit,
+                      amount: x.amount,
+                      tid: t._id,
+                    },
+                    {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    }
+                  )
+                  .then((res) => {
+                    console.log(res.data);
+                  });
               };
               setPopup(true);
             }}

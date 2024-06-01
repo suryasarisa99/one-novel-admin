@@ -10,8 +10,9 @@ import Payments from "./app/Payments";
 import WithdrawlsPage from "./app/Withdrawls";
 import AddTransactions from "./app/AddTransactions";
 import Transactions from "./app/Transactions.tsx/Transactions";
-
+import { useLocation } from "react-router-dom";
 export default function App() {
+  const location = useLocation();
   return (
     <div className="app">
       <Routes>

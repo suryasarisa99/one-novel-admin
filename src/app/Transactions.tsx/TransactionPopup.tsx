@@ -29,7 +29,7 @@ export default function TransactionPopup({
   useEffect(() => {
     if (editMode && editDetails) {
       setType(editDetails.transaction_type);
-      setAmount(-editDetails.amount);
+      setAmount(editDetails.amount);
       setStatus(editDetails.status);
       setDate(new Date(editDetails.date));
     }
@@ -81,24 +81,11 @@ export default function TransactionPopup({
               <h2>{editMode ? "Edit" : "Add"} Transaction</h2>
               <div className="add-transaction-item">
                 <span>Type</span>
-                <div className="switch">
-                  <span
-                    className={
-                      "switch-item " + (type == "withdrawl" ? "active" : "")
-                    }
-                    onClick={() => setType("withdrawl")}
-                  >
-                    withdrawl
-                  </span>
-                  <span
-                    onClick={() => setType("Referal Bonus")}
-                    className={
-                      "switch-item " + (type == "Referal Bonus" ? "active" : "")
-                    }
-                  >
-                    Referal Bonus
-                  </span>
-                </div>
+                <select value={type} onChange={(e) => setType(e.target.value)}>
+                  <option value="withdrawl">withdrawl</option>
+                  <option value="Referal Bonus">Referal Bonus</option>
+                  <option value="Gift">Gift</option>
+                </select>
               </div>
 
               <div className="add-transaction-item">
@@ -147,10 +134,10 @@ export default function TransactionPopup({
                         editMode && editDetails
                           ? editDetails._id
                           : Date.now().toString(),
-                      amount: type == "withdrawl" ? -amount : amount,
+                      amount: amount,
                       date: date.toISOString().split("T")[0],
                       is_debit: type == "withdrawl",
-                      status,
+                      status: type == "withdrawl" ? status : "",
                       transaction_type: type,
                     });
                   }}

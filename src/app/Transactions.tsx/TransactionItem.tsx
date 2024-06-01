@@ -12,7 +12,8 @@ export default function TransactionItem({
     <div className="transaction-item" onClick={onClick}>
       <div className="top">
         <span>{t.transaction_type}</span>
-        <span className={"amount " + (t.amount > 0 ? "added" : "deducted")}>
+        <span className={"amount " + (t.is_debit ? "deducted" : "added")}>
+          {t.is_debit ? "-" : "+"}
           {t.amount}
         </span>
       </div>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
   const [type, setType] = useState("number");
-  const [value, setValue] = useState("1112223330");
+  const [value, setValue] = useState("7989715056");
   const { user, setUser } = useData();
 
   const navigate = useNavigate();
@@ -83,23 +83,45 @@ export default function UserDetails() {
               </div>
               <div className="field">
                 <div className="label">Withdrawn </div>
-                <div className="value"> 500 </div>
+                <div className="value">
+                  {user.transactions
+                    .filter(
+                      (t) =>
+                        t.transaction_type == "withdrawl" &&
+                        t.status == "accepted"
+                    )
+                    .reduce((acc, t) => acc + t.amount, 0)}
+                </div>
               </div>
               <div className="field">
                 <div className="label">Pending </div>
-                <div className="value"> 500 </div>
+                <div className="value">
+                  {user.transactions
+                    .filter(
+                      (t) =>
+                        t.transaction_type == "withdrawl" &&
+                        t.status == "pending"
+                    )
+                    .reduce((acc, t) => acc + t.amount, 0)}
+                </div>
               </div>
               <div className="field">
                 <div className="label"> Referrals </div>
-                <div className="value"> </div>
+                <div className="value">{user.children.level1.length}</div>
               </div>
               <div className="field">
                 <div className="label">Valid ref </div>
-                <div className="value"> 5 </div>
+                <div className="value">
+                  {user.children.level1.filter((c) => c.valid).length}
+                </div>
               </div>
               <div className="field">
-                <div className="label">Total </div>
-                <div className="value"> 2000 </div>
+                <div className="label">Gift Price </div>
+                <div className="value">
+                  {user.transactions
+                    .filter((t) => t.transaction_type == "Gift")
+                    .reduce((acc, t) => acc + t.amount, 0)}
+                </div>
               </div>
             </div>
             <div className="sections">

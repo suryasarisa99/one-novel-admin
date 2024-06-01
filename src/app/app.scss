@@ -180,14 +180,17 @@ input {
 }
 
 .transactions-page {
+  padding: 0px 16px;
+
   h1 {
     font-size: 28px;
     margin-top: 14px;
     text-align: center;
+    margin-bottom: 14px;
   }
   .transactions {
-    padding: 14px 16px;
-
+    overflow-y: scroll;
+    height: calc(80vh - 15px); // padding-bottom: 480px;
     .transaction {
       padding: 10px 16px;
       background-color: var(--background-color);

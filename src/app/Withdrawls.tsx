@@ -34,16 +34,16 @@ export default function WithdrawlsPage() {
   return (
     <div className="transactions-page page">
       <h1>Withdrawls</h1>
+      <SearchBar
+        value={search}
+        onChange={(value) => setSearch(value)}
+        onClear={() => setSearch("")}
+        // options={["Amount Desc", "Amount Asc", "name", "userId", "number"]}
+        options={["name", "userId"]}
+        sortOn={sortOn}
+        setSortOn={setSortOn}
+      />
       <div className="transactions">
-        <SearchBar
-          value={search}
-          onChange={(value) => setSearch(value)}
-          onClear={() => setSearch("")}
-          // options={["Amount Desc", "Amount Asc", "name", "userId", "number"]}
-          options={["name", "userId"]}
-          sortOn={sortOn}
-          setSortOn={setSortOn}
-        />
         {withDrawls
           .filter((p) => {
             const searchStr = search.toLowerCase();
