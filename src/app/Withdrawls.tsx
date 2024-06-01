@@ -53,44 +53,52 @@ export default function WithdrawlsPage() {
           })
           .map((payment) => {
             return (
-              <div
-                key={payment._id}
-                className="withdrawl-item"
-                onClick={() => {
-                  // n("/");
-                  navigate(
-                    "/qrcode?userId=" +
-                      payment.userId +
-                      "&amount=" +
-                      payment.amount +
-                      "&userName=" +
-                      payment.userName +
-                      "&date=" +
-                      payment.date +
-                      "&status=" +
-                      payment.status +
-                      "&withdrawlId=" +
-                      payment._id +
-                      "&type=" +
-                      payment.type
-                  );
-                }}
-              >
-                <p>{payment.userName}</p>
-                <div className="right">
-                  <p>{payment.amount}</p>
-                  <FaChevronDown
-                    size={22}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (openPayment === payment._id) {
-                        setOpenPayment(null);
-                      } else {
-                        setOpenPayment(payment._id);
-                      }
-                    }}
-                  />
+              <div>
+                <div
+                  className="withdrawl-item"
+                  key={payment._id}
+                  onClick={() => {
+                    // n("/");
+                    navigate(
+                      "/qrcode?userId=" +
+                        payment.userId +
+                        "&amount=" +
+                        payment.amount +
+                        "&userName=" +
+                        payment.userName +
+                        "&date=" +
+                        payment.date +
+                        "&status=" +
+                        payment.status +
+                        "&withdrawlId=" +
+                        payment._id +
+                        "&type=" +
+                        payment.type
+                    );
+                  }}
+                >
+                  <p>{payment.userName}</p>
+                  <div className="right">
+                    <p>{payment.amount}</p>
+                    <FaChevronDown
+                      size={22}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (openPayment === payment._id) {
+                          setOpenPayment(null);
+                        } else {
+                          setOpenPayment(payment._id);
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
+
+                {openPayment === payment._id && (
+                  <div>
+                    <p>{payment.userId}</p>
+                  </div>
+                )}
               </div>
             );
           })}

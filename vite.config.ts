@@ -40,7 +40,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    host: "192.168.0.169",
+    // host: "192.168.0.169",
     port: 4444,
   },
 });

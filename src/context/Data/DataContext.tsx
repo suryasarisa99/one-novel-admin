@@ -4,6 +4,7 @@ import DataContextType, {
   WithDrawlsType,
 } from "./DataContextTypes";
 import axios from "axios";
+import { UserType } from "../../types/UserType";
 
 export const DataContext = createContext({} as DataContextType);
 export default function DataProvider({
@@ -16,6 +17,7 @@ export default function DataProvider({
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [withDrawls, setWithDrawls] = useState<WithDrawlsType[]>([]);
   const [logedIn, setLogedIn] = useState(false);
+  const [user, setUser] = useState<UserType | null>(null);
 
   useEffect(() => {
     if (token) {
@@ -30,27 +32,27 @@ export default function DataProvider({
       console.log(local_token);
       setToken(local_token);
 
-      axios
-        .get(import.meta.env.VITE_SERVER, {
-          headers: {
-            Authorization: `Bearer ${local_token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data) {
-            console.log(res.data);
-            setManualPayments(res.data.payments);
-            setWithDrawls(res.data.withdrawls);
-            setLogedIn(true);
-          }
-        })
-        .catch((err) => {
-          if (err.response.data.error == "Unauthorized") {
-            localStorage.removeItem("token");
-            setToken("");
-            setLogedIn(false);
-          }
-        });
+      // axios
+      //   .get(import.meta.env.VITE_SERVER, {
+      //     headers: {
+      //       Authorization: `Bearer ${local_token}`,
+      //     },
+      //   })
+      //   .then((res) => {
+      //     if (res.data) {
+      //       console.log(res.data);
+      //       setManualPayments(res.data.payments);
+      //       setWithDrawls(res.data.withdrawls);
+      //       setLogedIn(true);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     if (err.response.data.error == "Unauthorized") {
+      //       localStorage.removeItem("token");
+      //       setToken("");
+      //       setLogedIn(false);
+      //     }
+      //   });
     }
   }, []);
 
@@ -66,6 +68,8 @@ export default function DataProvider({
         token,
         setToken,
         logedIn,
+        user,
+        setUser,
         setLogedIn,
       }}
     >

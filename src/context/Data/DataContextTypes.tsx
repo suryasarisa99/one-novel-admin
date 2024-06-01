@@ -1,4 +1,5 @@
 import React from "react";
+import { UserType } from "../../types/UserType";
 
 type DataContextTypes = {
   data: number;
@@ -11,6 +12,8 @@ type DataContextTypes = {
   logedIn: boolean;
   setLogedIn: React.Dispatch<React.SetStateAction<boolean>>;
   setWithDrawls: React.Dispatch<React.SetStateAction<WithDrawlsType[]>>;
+  user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
 };
 
 export type WithDrawlsType = {

@@ -24,7 +24,7 @@ export default function QrCodePage() {
     if (type == 1) {
       qrcode.toDataURL(
         // `upi://pay?pa=${upi}&pn=${userName}&mc=0000&tid=123456&tr=123456&tn=Payment&am=${amount}&cu=INR&url=https://example.com`,
-        `upi://pay?pa=${upi}&pn=${userName}&tn=Payment&am=${amount}&cu=INR`,
+        `upi://pay?pa=${upi}&pn=YourName&am=${amount}&cu=INR`,
         (err, url) => {
           if (err) {
             console.error(err);
