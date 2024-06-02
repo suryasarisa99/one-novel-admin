@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.scss";
 import "./app/app.scss";
+import "./app/profile.scss";
 import { BrowserRouter } from "react-router-dom";
 import DataProvider from "./context/Data/DataContext";
 // import { registerSW } from "virtual:pwa-register";

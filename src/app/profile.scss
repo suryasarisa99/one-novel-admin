@@ -1,0 +1,157 @@
+.referal-page {
+  .referal-selector {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 20px;
+    padding: 10px;
+    border-radius: 12px;
+    gap: 5px;
+    margin-top: 10px;
+    background-color: var(--background-color);
+
+    .referal-lvl {
+      flex-grow: 1;
+      cursor: pointer;
+      // background-color: red;
+      width: 30px;
+      border-radius: 7px;
+      padding-block: 8px;
+      text-align: center;
+    }
+    .selected {
+      background-color: var(--primary-color);
+    }
+  }
+
+  .referals-count {
+    margin: 12px 20px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--background-color);
+
+    .referals-count-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      // background-color: red;
+    }
+    span:last-child {
+      background-color: var(--primary-color);
+      padding: 1px 16px;
+      border-radius: 6px;
+    }
+  }
+
+  .referals {
+    padding: 10px 20px;
+
+    .referal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background-color: var(--background-color);
+      margin-bottom: 8px;
+
+      .id {
+        font-size: 13px;
+        color: gray;
+      }
+
+      .status {
+        &.valid {
+          color: green;
+        }
+        &.invalid {
+          color: rgb(255, 46, 46);
+        }
+      }
+
+      .name {
+        font-size: 18px;
+      }
+      .amount {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.parents-page {
+  .parents {
+    padding: 10px 20px;
+
+    .parent-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background-color: var(--background-color);
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.edit-page {
+  .edit-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    gap: 4px;
+    .edit-item {
+      width: 93%;
+      align-items: center;
+      padding: 4px 12px;
+      display: flex;
+      border-radius: 8px;
+      justify-content: space-between;
+      background-color: var(--background-color);
+
+      &.two-items {
+        padding: 10px 18px;
+        justify-content: space-around;
+        div {
+          align-items: center;
+          display: flex;
+          gap: 18px;
+        }
+        input {
+          accent-color: rgb(188, 179, 131);
+        }
+      }
+    }
+  }
+  input,
+  select {
+    background-color: var(--primary-color);
+    border: 0px transparent;
+    border-radius: 6px;
+  }
+  select {
+    padding: 10px 14px;
+    text-overflow: hidden;
+    width: 226px;
+  }
+  input[type="checkbox"] {
+    padding: 14px 20px;
+    height: 18px;
+    width: 18px;
+  }
+
+  h1 {
+    text-align: center;
+    margin: 20px 0px;
+    font-size: 32px;
+  }
+  button {
+    width: 80%;
+    margin: 25px 0px;
+  }
+}

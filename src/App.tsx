@@ -11,6 +11,9 @@ import WithdrawlsPage from "./app/Withdrawls";
 import AddTransactions from "./app/AddTransactions";
 import Transactions from "./app/Transactions.tsx/Transactions";
 import { useLocation } from "react-router-dom";
+import ReferalPage from "./app/Referals/Referals";
+import Parentspage from "./app/parents";
+import EditPage from "./app/Edit/edit";
 export default function App() {
   const location = useLocation();
   return (
@@ -22,6 +25,9 @@ export default function App() {
         <Route path="/payments" element={<Payments />} />
         <Route path="/withdrawls" element={<WithdrawlsPage />} />
         <Route path="/transactions" element={<Transactions />} />
+        <Route path="/referals" element={<ReferalPage />} />
+        <Route path="/parents" element={<Parentspage />} />
+        <Route path="/edit" element={<EditPage />} />
       </Routes>
       {location.pathname !== "/" && <NavBar />}
     </div>

@@ -15,7 +15,7 @@ export default function WithdrawlsPage() {
   const [sortOn, setSortOn] = useState("name");
 
   useEffect(() => {
-    console.log("token is added, ", token);
+    if (!token) navigate("/");
   }, [token]);
 
   function confirmPayment(id: string, status: string) {

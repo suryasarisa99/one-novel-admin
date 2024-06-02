@@ -15,6 +15,7 @@ export type UserType = {
   uploadUrl: string;
   uploadStatus: string;
   password: string;
+  level: number;
   transactions: {
     _id: string;
     status: string;

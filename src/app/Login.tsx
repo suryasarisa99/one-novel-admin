@@ -12,6 +12,7 @@ export default function AdminLogin() {
     setToken,
     manualPayments,
     setManualPayments,
+    setWithDrawls,
     logedIn,
     setLogedIn,
   } = useData();
@@ -26,13 +27,16 @@ export default function AdminLogin() {
         if (res.data.token) {
           setToken(res.data.token);
           setManualPayments(res.data.payments);
+          setWithDrawls(res.data.withdrawls);
           navigate("/payments");
           setLogedIn(true);
+          alert("Loged IN");
         }
       })
       .catch((err) => {
         setLogedIn(false);
         setToken("");
+        alert(err.response.data.message);
       })
       .finally(() => {});
   }

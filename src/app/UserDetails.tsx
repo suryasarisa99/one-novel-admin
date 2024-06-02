@@ -125,13 +125,18 @@ export default function UserDetails() {
               </div>
             </div>
             <div className="sections">
-              <div className="section">
+              <div
+                className="section"
+                onClick={() => {
+                  navigate("/parents");
+                }}
+              >
                 <div className="title">Parents</div>
                 <div className="icon">
                   <FaChevronRight />
                 </div>
               </div>
-              <div className="section">
+              <div className="section" onClick={() => navigate("/referals")}>
                 <div className="title">Referals</div>
                 <div className="icon">
                   <FaChevronRight />
@@ -144,6 +149,17 @@ export default function UserDetails() {
                 }}
               >
                 <div className="title">Transactions</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
+              <div
+                className="section"
+                onClick={() => {
+                  navigate("/edit");
+                }}
+              >
+                <div className="title">Edit</div>
                 <div className="icon">
                   <FaChevronRight />
                 </div>

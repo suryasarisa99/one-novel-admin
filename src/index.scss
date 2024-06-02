@@ -84,18 +84,23 @@ button:focus-visible {
 }
 
 .app {
-  height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  justify-content: space-between;
+  height: 100dvh;
+  /* overflow-y: hidden; */
 }
 
 .page {
-  height: 100vh;
+  flex: 1;
+  overflow-y: hidden;
 }
 
 .nav-bar {
   display: flex;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
   flex-shrink: 0;
   width: 100%;
   background-color: var(--background-color);
