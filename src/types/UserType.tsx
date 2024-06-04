@@ -1,4 +1,4 @@
-type UserChildrenType = {
+export type UserChildrenType = {
   _id: string;
   valid: boolean;
   name: string;

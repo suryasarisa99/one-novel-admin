@@ -37,6 +37,7 @@ export type ManualPaymentType = {
   userId: string;
   date: string;
   status: string;
+  utr: string;
   userName: string;
   number: string;
 };

@@ -35,7 +35,7 @@ export default function Payments() {
         />
         {manualPayments
           .filter((p) => {
-            if (sortOn == "utr") return p._id.startsWith(search);
+            if (sortOn == "utr") return p.utr.startsWith(search);
             else if (sortOn == "name")
               return p.userName.toLowerCase().includes(search.toLowerCase());
             else if (sortOn == "userId") return p.userId.includes(search);
@@ -47,7 +47,7 @@ export default function Payments() {
                 <div className="top">
                   <p>
                     {{
-                      utr: payment._id,
+                      utr: payment.utr,
                       name: payment.userName,
                       userId: payment.userId,
                       number: payment.number,
@@ -75,7 +75,7 @@ export default function Payments() {
                     {sortOn != "userId" && (
                       <p className="userId">{payment.userId}</p>
                     )}
-                    {sortOn != "utr" && <p className="utr">{payment._id}</p>}
+                    {sortOn != "utr" && <p className="utr">{payment.utr}</p>}
 
                     <p>{payment.date.toString()}</p>
                     <div className="btns">

@@ -1,4 +1,6 @@
 .referal-page {
+  overflow-y: hidden;
+  height: 100%;
   .referal-selector {
     display: flex;
     justify-content: space-between;
@@ -47,6 +49,12 @@
 
   .referals {
     padding: 10px 20px;
+    // 60.8px for heading
+    // 88px for level selector
+    // 46px for counts of valid invalid
+    // 53px for bottom bar
+    height: calc(100vh - 60.8px - 88px - 46px - 53px);
+    overflow-y: auto;
 
     .referal {
       display: flex;

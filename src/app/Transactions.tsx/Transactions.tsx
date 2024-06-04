@@ -41,7 +41,7 @@ export default function Transactions() {
         backdropFilter: popup ? "blur(10px)" : "none",
       }}
     >
-      <div className="title">
+      <div className="title-with-btns">
         <h1>Transactions</h1>
 
         <div className="btns">
