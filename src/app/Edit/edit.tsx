@@ -1,9 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import useData from "../../hooks/useData";
 import axios from "axios";
+import { FaChevronLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function EditPage() {
   const { user, token } = useData();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -37,6 +40,10 @@ export default function EditPage() {
       ifsc: user?.bank?.ifsc || "",
     });
   }, []);
+
+  useEffect(() => {
+    if (!user) navigate("/user");
+  }, [user]);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -69,7 +76,18 @@ export default function EditPage() {
   }
   return (
     <div className="edit-page page">
-      <h1>Edit Page</h1>
+      <div className="title-with-btns">
+        <div
+          className="icon"
+          onClick={() => {
+            navigate("/user");
+          }}
+        >
+          <FaChevronLeft />
+        </div>
+        <h1>Edit Page</h1>
+        <div className="icon"></div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="edit-items">
           <div className="edit-item">
