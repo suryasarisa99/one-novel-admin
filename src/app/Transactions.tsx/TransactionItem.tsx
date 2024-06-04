@@ -19,7 +19,7 @@ export default function TransactionItem({
       </div>
       <div className="bottom">
         <span className={"status " + t.status}>{t.status}</span>
-        <span>{t.date}</span>
+        <span>{t.date.split("T")[0]}</span>
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ button:focus-visible {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #242424;
+  background-color: var(--overlay);
 }
 .hidden {
   display: none;

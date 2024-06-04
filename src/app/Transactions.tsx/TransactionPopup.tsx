@@ -135,7 +135,7 @@ export default function TransactionPopup({
                           ? editDetails._id
                           : Date.now().toString(),
                       amount: amount,
-                      date: date.toISOString().split("T")[0],
+                      date: date.toISOString(),
                       is_debit: type == "withdrawl",
                       status: type == "withdrawl" ? status : "",
                       transaction_type: type,

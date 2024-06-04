@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import useData from "../../hooks/useData";
-import { FaPlus } from "react-icons/fa";
+import { FaChevronLeft, FaPlus } from "react-icons/fa";
 import ReferalPopup from "./ReferalPopup";
 import { UserChildrenType } from "../../types/UserType";
 import shortid from "shortid";
@@ -30,41 +30,47 @@ export default function ReferalPage() {
   return (
     <div className="referal-page page">
       <div className="title-with-btns">
+        <div
+          className="left-icon icon"
+          onClick={() => {
+            navigate("/user");
+          }}
+        >
+          <FaChevronLeft />
+        </div>
         <h1>Referals</h1>
+        <div
+          className="btn icon"
+          onClick={() => {
+            setShowPopup(true);
+            setPopupDetails(undefined);
+            setEditMode(false);
+            handleAddRef.current = (x) => {
+              setUser((prevUser) => {
+                if (!prevUser) return prevUser;
+                console.log("handle add:", x);
+                const updatedChildren = { ...prevUser.children };
+                const key = ("level" + selectedReferal) as ReferalType;
+                updatedChildren[key] = [...updatedChildren[key], x];
+                return { ...prevUser, children: updatedChildren };
+              });
 
-        <div className="btns">
-          <button
-            onClick={() => {
-              setShowPopup(true);
-              setPopupDetails(undefined);
-              setEditMode(false);
-              handleAddRef.current = (x) => {
-                setUser((prevUser) => {
-                  if (!prevUser) return prevUser;
-                  console.log("handle add:", x);
-                  const updatedChildren = { ...prevUser.children };
-                  const key = ("level" + selectedReferal) as ReferalType;
-                  updatedChildren[key] = [...updatedChildren[key], x];
-                  return { ...prevUser, children: updatedChildren };
-                });
-
-                axios.post(
-                  `${import.meta.env.VITE_SERVER}/edit/referal/${user._id}`,
-                  {
-                    r: x,
-                    level: selectedReferal,
+              axios.post(
+                `${import.meta.env.VITE_SERVER}/edit/referal/${user._id}`,
+                {
+                  r: x,
+                  level: selectedReferal,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
                   },
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                );
-              };
-            }}
-          >
-            <FaPlus />
-          </button>
+                }
+              );
+            };
+          }}
+        >
+          <FaPlus />
         </div>
       </div>
       <ReferalPopup

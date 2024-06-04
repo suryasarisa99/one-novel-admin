@@ -125,24 +125,26 @@
 }
 
 .title-with-btns {
-  padding-right: 25px;
+  padding-inline: 20px;
   position: relative;
   margin-top: 16px;
   margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   // position: sticky;
-  .btns {
-    top: 0px;
-    right: 10px;
-    position: absolute;
-    display: flex;
-    gap: 8px;
-    button {
-      background-color: transparent;
-      color: var(--text-color);
-    }
-  }
+
   h1 {
     text-align: center;
     font-size: 28px;
+  }
+
+  .btns {
+    display: flex;
+    gap: 0px;
+  }
+  .icon {
+    padding: 4px 25px;
+    font-size: 24px;
   }
 }

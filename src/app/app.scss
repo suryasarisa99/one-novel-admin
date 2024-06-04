@@ -17,6 +17,7 @@
   --on-btn: #fff;
   --error: #ffebeb;
   --on-error: #8b0000;
+  --overlay: #75757537;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +36,7 @@
     --input-border: #4b4b4bcc;
     --error: #440a0a; // Dark red
     --on-error: #ffcccc; // Light red
+    --overlay: #00000061;
   }
 }
 
@@ -52,7 +54,7 @@ button {
 }
 #overlay,
 .overlay {
-  background-color: rgba(117, 117, 117, 0.216);
+  background-color: var(--overlay);
   position: fixed;
   top: -20px;
   left: -20px;

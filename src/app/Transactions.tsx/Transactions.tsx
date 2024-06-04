@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import TransactionPopup from "./TransactionPopup";
 import "../add-transactions.scss";
 import TransactionItem from "./TransactionItem";
-import { FaPlus, FaSave } from "react-icons/fa";
+import { FaChevronLeft, FaPlus, FaSave } from "react-icons/fa";
 import useData from "../../hooks/useData";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -42,11 +42,15 @@ export default function Transactions() {
       }}
     >
       <div className="title-with-btns">
+        <div className="icon" onClick={() => navigate("/user")}>
+          <FaChevronLeft />
+        </div>
         <h1>Transactions</h1>
 
         <div className="btns">
           {transactions.length > 0 && (
-            <button
+            <div
+              className="icon"
               onClick={() => {
                 axios
                   .post(
@@ -68,20 +72,54 @@ export default function Transactions() {
               }}
             >
               <FaSave />
-            </button>
+            </div>
           )}
-          <button
+          <div
+            className="icon"
             onClick={() => {
               setEditMode(false);
               setPopupDetails(undefined);
               setPopup(true);
               handleAddRef.current = (t: TransactionType) => {
-                setTransactions((prv) => [...prv, t]);
+                // setTransactions((prv) => [...prv, t]);
+
+                axios
+                  .post(
+                    `${import.meta.env.VITE_SERVER}/edit/transaction/${
+                      user?._id
+                    }`,
+                    {
+                      status: t.status,
+                      type: t.transaction_type,
+                      is_debit: t.is_debit,
+                      amount: t.amount,
+                      date: t.date,
+                    },
+                    {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    }
+                  )
+                  .then((res) => {
+                    if (res.data.id) {
+                      setUser((prvUser) => {
+                        if (!prvUser) return prvUser;
+                        return {
+                          ...prvUser,
+                          transactions: [
+                            ...prvUser.transactions,
+                            { ...t, _id: res.data.id },
+                          ],
+                        };
+                      });
+                    }
+                  });
               };
             }}
           >
             <FaPlus />
-          </button>
+          </div>
         </div>
       </div>
       <div className="transactions">
@@ -106,6 +144,7 @@ export default function Transactions() {
                       type: x.transaction_type,
                       is_debit: x.is_debit,
                       amount: x.amount,
+                      date: x.date,
                       tid: t._id,
                     },
                     {

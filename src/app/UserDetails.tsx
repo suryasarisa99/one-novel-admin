@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
   const [type, setType] = useState("number");
-  const [value, setValue] = useState("7989715056");
+  const [value, setValue] = useState("1112223331");
   const { user, setUser } = useData();
 
   const navigate = useNavigate();
