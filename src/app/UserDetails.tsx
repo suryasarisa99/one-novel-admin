@@ -5,9 +5,9 @@ import { FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
-  const [type, setType] = useState("");
-  const [value, setValue] = useState("");
   const { user, setUser } = useData();
+  const [type, setType] = useState(user?._id ? "_id" : "");
+  const [value, setValue] = useState(user?._id || "");
 
   const navigate = useNavigate();
   const onSubmit = (e: FormEvent) => {

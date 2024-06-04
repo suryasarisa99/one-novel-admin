@@ -125,7 +125,7 @@
 }
 
 .title-with-btns {
-  padding-inline: 20px;
+  padding-inline: 12px;
   position: relative;
   margin-top: 16px;
   margin-bottom: 14px;
@@ -144,7 +144,8 @@
     gap: 0px;
   }
   .icon {
-    padding: 4px 25px;
-    font-size: 24px;
+    padding: 4px 18px;
+    font-size: 19px;
+    // background-color: red;
   }
 }
