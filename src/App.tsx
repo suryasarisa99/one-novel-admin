@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import ReferalPage from "./app/Referals/Referals";
 import Parentspage from "./app/parents";
 import EditPage from "./app/Edit/edit";
+import UploadsPage from "./app/uploads";
 export default function App() {
   const location = useLocation();
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/" element={<AdminLogin />} />
         <Route path="/qrcode" element={<QrCodePage />} />
         <Route path="/payments" element={<Payments />} />
+        <Route path="/uploads" element={<UploadsPage />} />
         <Route path="/withdrawls" element={<WithdrawlsPage />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/referals" element={<ReferalPage />} />

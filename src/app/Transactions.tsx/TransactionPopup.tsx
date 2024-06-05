@@ -85,6 +85,9 @@ export default function TransactionPopup({
                   <option value="withdrawl">withdrawl</option>
                   <option value="Referal Bonus">Referal Bonus</option>
                   <option value="Gift">Gift</option>
+                  <option value="Writers Benfit Bonus">
+                    Writers Benfit Bonus
+                  </option>
                 </select>
               </div>
 

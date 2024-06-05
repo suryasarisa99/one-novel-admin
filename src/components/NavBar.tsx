@@ -3,6 +3,7 @@ import {
   MdAdminPanelSettings,
 } from "react-icons/md";
 import { RiPaypalLine, RiPaypalFill } from "react-icons/ri";
+import { BsFileEarmarkPdf, BsFileEarmarkPdfFill } from "react-icons/bs";
 import { FaMoneyBillWaveAlt, FaMoneyBillWave } from "react-icons/fa";
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
@@ -25,19 +26,19 @@ export default function NavBar() {
       size: "27px",
     },
     {
+      name: "Uploads",
+      path: "/uploads",
+      Icon: BsFileEarmarkPdf,
+      ActiveIcon: BsFileEarmarkPdfFill,
+      size: "27px",
+    },
+    {
       name: "Admin",
       path: "/user",
       Icon: MdOutlineAdminPanelSettings,
       ActiveIcon: MdAdminPanelSettings,
       size: "27px",
     },
-    // {
-    //   name: "Referal",
-    //   path: "/referal",
-    //   Icon: HiOutlineUserGroup,
-    //   ActiveIcon: HiMiniUserGroup,
-    //   size: "28px",
-    // },
   ];
 
   const location = useLocation();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useReducer } from "react";
 import DataContextType, {
   ManualPaymentType,
+  UploadType,
   WithDrawlsType,
 } from "./DataContextTypes";
 import axios from "axios";
@@ -16,6 +17,7 @@ export default function DataProvider({
   const [data, setData] = useState(0);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [withDrawls, setWithDrawls] = useState<WithDrawlsType[]>([]);
+  const [uploads, setUploads] = useState<UploadType[]>([]);
   const [logedIn, setLogedIn] = useState(false);
   const [user, setUser] = useState<UserType | null>(null);
 
@@ -43,6 +45,7 @@ export default function DataProvider({
             console.log(res.data);
             setManualPayments(res.data.payments);
             setWithDrawls(res.data.withdrawls);
+            setUploads(res.data.uploads);
             setLogedIn(true);
           }
         })
@@ -68,6 +71,8 @@ export default function DataProvider({
         token,
         setToken,
         logedIn,
+        uploads,
+        setUploads,
         user,
         setUser,
         setLogedIn,

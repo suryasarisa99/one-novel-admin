@@ -14,6 +14,8 @@ type DataContextTypes = {
   setWithDrawls: React.Dispatch<React.SetStateAction<WithDrawlsType[]>>;
   user: UserType | null;
   setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  uploads: UploadType[];
+  setUploads: React.Dispatch<React.SetStateAction<UploadType[]>>;
 };
 
 export type WithDrawlsType = {
@@ -40,6 +42,14 @@ export type ManualPaymentType = {
   utr: string;
   userName: string;
   number: string;
+};
+
+export type UploadType = {
+  _id: string;
+  userId: string;
+  userName: string;
+  url: string;
+  status: string;
 };
 
 export default DataContextTypes;

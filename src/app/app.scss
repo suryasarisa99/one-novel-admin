@@ -236,3 +236,16 @@ input {
     gap: 25px;
   }
 }
+
+.upload-item {
+  padding: 20px 20px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: var(--background-color);
+
+  .btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+}
