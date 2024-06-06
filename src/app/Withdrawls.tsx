@@ -75,14 +75,22 @@ export default function WithdrawlsPage() {
                         "&withdrawlId=" +
                         payment._id +
                         "&type=" +
-                        payment.type
+                        payment.type +
+                        "&upi=" +
+                        payment.upi
                     );
                   }}
                 >
-                  <p>{payment.userName}</p>
+                  <div className="left">
+                    <p>{payment.userName}</p>
+                    <p className="id">{payment.userId}</p>
+                  </div>
                   <div className="right">
-                    <p>{payment.amount}</p>
-                    <FaChevronDown
+                    <span className="type">
+                      {payment.type == 1 ? "upi" : "bank"}
+                    </span>
+                    <span className="amount">{payment.amount}</span>
+                    {/* <FaChevronDown
                       size={22}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -92,15 +100,15 @@ export default function WithdrawlsPage() {
                           setOpenPayment(payment._id);
                         }
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
-
+                {/* 
                 {openPayment === payment._id && (
                   <div>
                     <p>{payment.userId}</p>
                   </div>
-                )}
+                )} */}
               </div>
             );
           })}

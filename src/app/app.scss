@@ -226,12 +226,27 @@ input {
 .withdrawl-item {
   padding: 10px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: var(--background-color);
   border-radius: 8px;
   margin-bottom: 4px;
 
-  ight {
+  .amount {
+    font-size: 22px;
+    margin-right: 15px;
+  }
+  .type {
+    padding: 4px 12px;
+    margin-right: 25px;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+  }
+  .id {
+    font-size: 16px;
+  }
+
+  right {
     display: flex;
     gap: 25px;
   }
@@ -247,5 +262,27 @@ input {
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+  }
+}
+
+.copy-field {
+  display: flex;
+  padding: 10px 18px;
+  border-radius: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 10px;
+  background-color: var(--background-color);
+  .title {
+    padding-right: 10px;
+    border-right: 2px solid var(--text-color);
+  }
+  .value {
+    font-size: 21px;
+    padding-right: 10px;
+    border-right: 2px solid var(--text-color);
+  }
+  .copy-icon {
+    padding: 4px 10px;
   }
 }

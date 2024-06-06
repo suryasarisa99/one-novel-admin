@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import qrcode from "qrcode";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import useData from "../hooks/useData";
+import { FaChevronLeft, FaClipboard, FaCopy } from "react-icons/fa";
 export default function QrCodePage() {
   const [Qr, setQr] = useState("");
   const [searchParams] = useSearchParams();
   const { token } = useData();
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const userId = searchParams.get("userId");
@@ -16,7 +18,7 @@ export default function QrCodePage() {
   const type = parseInt(searchParams.get("type") ?? "");
   const upi = searchParams.get("upi");
   const withdrawlId = searchParams.get("withdrawlId");
-  const bank = searchParams.get("bank");
+  const bank = JSON.parse(searchParams.get("bank") || "{}");
 
   console.log(userId, amount, userName, date, type);
 
@@ -56,9 +58,29 @@ export default function QrCodePage() {
 
   return (
     <div className="qrcode-page page">
-      <p className="amount">{amount}</p>
-      <h3>QR Code </h3>
+      <div className="title-with-btns">
+        <div
+          className="icon"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <FaChevronLeft size={26} />
+        </div>
+        <h1 className="amount">₹ {amount}</h1>
+        <div className="icon"></div>
+      </div>
+      {type == 1 && <h3>QR Code </h3>}
+      {type == 2 && <h3>Bank Details </h3>}
       {type == 1 && Qr && <img src={Qr} className="qrcode" alt="QR Code" />}
+      {type == 1 && Qr && <CopyField title="UPI ID" value={upi || ""} />}
+      {type == 2 && (
+        <div>
+          <CopyField title="Bank" value={bank?.name} />
+          <CopyField title="Ifsc" value={bank?.ifsc} />
+          <CopyField title="Accno" value={bank?.acc_no} />
+        </div>
+      )}
       <div className="btns">
         <button
           onClick={() => {
@@ -74,6 +96,23 @@ export default function QrCodePage() {
         >
           Done
         </button>
+      </div>
+    </div>
+  );
+}
+
+function CopyField({ title, value }: { title: string; value: string }) {
+  return (
+    <div className="copy-field">
+      <div className="title">{title}</div>
+      <div className="value">{value}</div>
+      <div
+        className="copy-icon"
+        onClick={() => {
+          navigator?.clipboard?.writeText(value);
+        }}
+      >
+        <FaClipboard />
       </div>
     </div>
   );

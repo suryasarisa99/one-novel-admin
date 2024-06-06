@@ -5,7 +5,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
-  const { user, setUser } = useData();
+  const { user, setUser, token, setToken } = useData();
   const [type, setType] = useState(user?._id ? "_id" : "");
   const [value, setValue] = useState(user?._id || "");
 
@@ -13,7 +13,11 @@ export default function UserDetails() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     axios
-      .get(`${import.meta.env.VITE_SERVER}/user/${type}/${value}`)
+      .get(`${import.meta.env.VITE_SERVER}/user/${type}/${value}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         console.log(res.data);
@@ -63,27 +67,28 @@ export default function UserDetails() {
                 <div className="label">Pass </div>
                 <div className="value"> {user.password} </div>
               </div>
-              {/* <div className="field">
-            <p className="label">Level </p>
-            <p className="value">Member</p>
-          </div> */}
               <div className="field">
                 <p className="label">Email </p>
                 <p className="value"> {user.email} </p>
               </div>
               <div className="field">
-                <div className="label">UPI: </div>
+                <div className="label">UPI </div>
                 <div className="value"> {user.upi}</div>
+              </div>
+              <div className="field">
+                <div className="label">Pos </div>
+                <div className="value"> {user.level}</div>
               </div>
             </div>
             <div className="details">
               <div className="field">
                 <div className="label">Balance </div>
-                <div className="value"> {user.balance} </div>
+                <div className="value">₹ {user.balance} </div>
               </div>
               <div className="field">
                 <div className="label">Withdrawn </div>
                 <div className="value">
+                  ₹{" "}
                   {user.transactions
                     .filter(
                       (t) =>
@@ -96,6 +101,7 @@ export default function UserDetails() {
               <div className="field">
                 <div className="label">Pending </div>
                 <div className="value">
+                  ₹{" "}
                   {user.transactions
                     .filter(
                       (t) =>
@@ -118,6 +124,7 @@ export default function UserDetails() {
               <div className="field">
                 <div className="label">Gift Price </div>
                 <div className="value">
+                  ₹{" "}
                   {user.transactions
                     .filter((t) => t.transaction_type == "Gift")
                     .reduce((acc, t) => acc + t.amount, 0)}
@@ -155,11 +162,34 @@ export default function UserDetails() {
               </div>
               <div
                 className="section"
+                onClick={() => navigate("/profile-uploads")}
+              >
+                <div className="title">Uploads</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
+              <div
+                className="section"
                 onClick={() => {
                   navigate("/edit");
                 }}
               >
                 <div className="title">Edit</div>
+                <div className="icon">
+                  <FaChevronRight />
+                </div>
+              </div>
+              <div
+                className="section"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  setToken("");
+                  setUser(null);
+                  navigate("/");
+                }}
+              >
+                <div className="title">Signout</div>
                 <div className="icon">
                   <FaChevronRight />
                 </div>

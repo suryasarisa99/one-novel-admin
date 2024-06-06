@@ -15,6 +15,12 @@ export type UserType = {
   uploadUrl: string;
   uploadStatus: string;
   password: string;
+  uploadedBooks: {
+    _id: string;
+    url: string;
+    date: string;
+    status: boolean;
+  }[];
   level: number;
   transactions: {
     _id: string;

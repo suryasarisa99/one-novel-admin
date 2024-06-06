@@ -15,6 +15,7 @@ import ReferalPage from "./app/Referals/Referals";
 import Parentspage from "./app/parents";
 import EditPage from "./app/Edit/edit";
 import UploadsPage from "./app/uploads";
+import ProfileUploadsPage from "./app/Uploads/Uploads";
 export default function App() {
   const location = useLocation();
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/referals" element={<ReferalPage />} />
         <Route path="/parents" element={<Parentspage />} />
+        <Route path="/profile-uploads" element={<ProfileUploadsPage />} />
         <Route path="/edit" element={<EditPage />} />
       </Routes>
       {location.pathname !== "/" && <NavBar />}
